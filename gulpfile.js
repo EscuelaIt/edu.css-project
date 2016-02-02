@@ -71,15 +71,6 @@ gulp.task('css', function() {
         .pipe(gulp.dest( path.dist + '/css' ))
 });
 
-gulp.task('css-example', function() {
-    return gulp.src( path.example + '/**/*.scss' )
-    .pipe(plumber({
-        errorHandler: onError
-    }))
-    .pipe(sass())
-    .pipe(gulp.dest( path.example ))
-});
-
 
 // FONTS ================================================
 gulp.task('fonts', function() {
@@ -161,7 +152,6 @@ gulp.task('build', function(callback) {
             'files',
             'svg',
             'css',
-            'css-example',
             'fonts',
             'js'
         ],

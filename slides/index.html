@@ -38,18 +38,24 @@
   <div class="reveal">
     <div class="slides">
       <section>
-        <h1 style="font-size: 7rem; margin-bottom: 1rem;"><strong>Buenas prácticas en CSS</strong></h1>
+        <h1 style="font-size: 7rem; margin-bottom: 1rem;"><strong>Estructura de un proyecto</strong></h1>
         <div><small style="border-top: 1px dotted rgba(0,0,0,.6); display: inline-block; padding: 1.5rem 6rem 0;"><i>por</i> <a href="http://nahuelsotelo.com">Nahuel Sotelo</a></small></div>
       </section>
 
-      <section>
-  <p style="font-size: 1.5em; text-align: center;">Hola, soy <strong>Nahuel Sotelo</strong></p>
-  <p style="text-align: center;">Frontend developer en <a href="http://www.schibsted.es/">Schibsted Spain</a> y Profesor de la asignatura Programación Frontend en el Master de <a href="http://www.baued.es/es/estudios/masters-y-posgrados/master-en-diseno-web">Diseño Web de Bau</a>.</p>
+      <section id="hello">
+  <p class="fz-l ta-c">Hola, soy <strong>Nahuel Sotelo</strong></p>
+  <p class="ta-c">Frontend developer en <a href="http://www.schibsted.es/">Schibsted Spain</a> y Profesor de la asignatura Programación Frontend en el Master de <a href="http://www.baued.es/es/estudios/masters-y-posgrados/master-en-diseno-web">Diseño Web de Bau</a>.</p>
 
-  <ul class="social">
-    <li><a href="https://github.com/nahuelsotelo" class="is--github">Github</a></li>
-    <li><a href="https://es.linkedin.com/in/nahuelsotelo" class="is--linkedin">Linkedin</a></li>
-    <li><a href="https://twitter.com/nahuelsotelo" class="is--twitter">Twitter</a></li>
+  <ul class="Social">
+    <li class="Social-item">
+      <a href="https://github.com/nahuelsotelo" class="Social-link Social-link--github">nahuelsotelo</a>
+    </li>
+    <li class="Social-item">
+      <a href="https://es.linkedin.com/in/nahuelsotelo" class="Social-link Social-link--linkedin">Nahuel Sotelo</a>
+    </li>
+    <li class="Social-item">
+      <a href="https://twitter.com/nahuelsotelo" class="Social-link Social-link--twitter">@nahuelsotelo</a>
+    </li>
   </ul>
 </section>
 
@@ -58,12 +64,8 @@
   <ol>
     <li>Introducción</li>
     <li>Guía de estilos de código</li>
-    <li>Arquitectura de carpetas</li>
-    <li>Componentes modulares</li>
-    <li>Especificidad</li>
     <li>Selectores</li>
-    <li>Sistemas de Nomenclatura</li>
-    <li>Conclusiones</li>
+    <li>Arquitectura de carpetas</li>
   </ol>
 </section>
 
@@ -154,6 +156,82 @@
       <li><a href="http://csscomb.com/">CSS Comb</a></li>
       <li><a href="http://editorconfig.org/">EditorConfig</a></li>
     </ul>
+  </section>
+</section>
+
+
+<section>
+  <section>
+    <h1>Selectores</h1>
+  </section>
+
+  <section>
+    <h3>Carcterísticas de un buen selector</h3>
+    <ul>
+      <li>Tiene baja especificidad</li>
+      <li>Es sólido (no depende del contexto)</li>
+      <li>Es autodocumentado (su función se entiende solo con leerlo)</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>El gráfico de especificidad es una representación de cómo se distribuye la misma a lo largo de una hoja de estilo.</p>
+    <p>Es recomendable que la especificidad vaya <strong>aumentando gradualmente</strong>, empezando con estilos más genéricos (selectores de elemento) y acabando con casos más específicos.</p>
+  </section>
+
+  <section>
+    <h2>Gráfico de especificidad</h2>
+    <div>
+      <img src="./img/specificity-graph-02.png" alt="" style="height: 350px;">
+      <p style="text-align: center;"><cite><a href="http://csswizardry.com/2014/10/the-specificity-graph/">The Specificity Graph</a> - <em>Harry Roberts</em></cite></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Especificidad plana</h2>
+    <p>Intentar mantener los selectores lo más cortos posibles (evitar nesting) nos ayudará a que nuestros componentes no estén atados a un contexto determinado y sean <strong>independientes</strong> del HTML.</p>
+
+    <pre><code class="hljs css">
+  /* Cuidado! */
+  #main-header nav ul > li .nav-link:first-child { ... }  /* 0, 1, 2, 3 */
+
+  /* Mejor */
+  .MainNav-link--first { ... }  /* 0, 0, 1, 0 */
+    </code></pre>
+  </section>
+
+  <section>
+    <h2>Sistemas de Nomenclaturas</h2>
+    <blockquote>
+      "What we want is to be able to write code that is as transparent and self-documenting as possible. Transparency means that it is clear and obvious (to others) in its intent; self-documenting means that we don’t have to lose time to writing and reading lengthy, supplementary documentation."
+      <footer><cite>- Harry Roberts</cite></footer>
+    </blockquote>
+  </section>
+
+  <section>
+    <h2>Enlaces relacionados:</h2>
+    <ul>
+      <li>
+        <a href="https://vimeo.com/140641366">“CSS For Software Engineers For CSS Developers”</a> - <i>Harry Roberts</i>
+      </li>
+
+      <li>
+        <a href="http://seesparkbox.com/foundry/naming_css_stuff_is_really_hard">“Naming CSS Stuff Is Really Hard”</a> - <i>Ethan Muller</i>
+      </li>
+      <li>
+        <a href="http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/">“More Transparent UI Code with Namespaces”</a> - <i>Harry Roberts</i>
+      </li>
+
+      <li>
+        <a href="https://en.bem.info/method/">BEM Methodology</a>
+      </li>
+
+      <li>
+        <a href="https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md">SUIT</a>
+      </li>
+      <li>
+        <a href="https://smacss.com/">“SMACSS”</a> - <i>Jonathan Snook</i>
+      </li>
   </section>
 </section>
 
@@ -334,248 +412,24 @@
 </section>
 
 
-<section>
-  <section>
-    <h1>Componentes modulares</h1>
-  </section>
+<section id="bye">
+  <h2 class="ta-c">¡Gracias!</strong></h2>
+  <p class="ta-c">Preguntas, dudas, comentarios a <a href="mailto:hola@nahuelsotelo.com" style="display: block;">hola@nahuelsotelo.com</a></p>
 
-  <section>
-    <blockquote>
-      <p>“It's a repeating visual pattern, that can be abstracted into an independent snippet of HTML, CSS and possibly JavaScript.”</p>
-      <footer>- <cite><a href="https://vimeo.com/72759139">Nicole Sullivan</a></cite></footer>
-    </blockquote>
+  <ul class="Social">
+    <li class="Social-item">
+      <a href="https://github.com/nahuelsotelo" class="Social-link Social-link--github">nahuelsotelo</a>
+    </li>
 
-    <div>
-      <img src="./img/bem02.png" alt="" style="height: 350px;">
-    </div>
-  </section>
+    <li class="Social-item">
+      <a href="https://es.linkedin.com/in/nahuelsotelo" class="Social-link Social-link--linkedin">Nahuel Sotelo</a>
+    </li>
 
-  <section>
-    <h2>Características de un componente:</h2>
-    <ul>
-      <li>Son un fragmento de la interfaz que cumple una única función.</li>
-      <li>Son independientes, tanto de su contexto como del resto de componentes.</li>
-      <li>Son reutilizables.</li>
-      <li>Son autocontenidos, no filtran estilos a otros componentes.</li>
-    </ul>
-
-    <aside class="notes">
-      <p>Separados del layout. Su relación con el contexto se gestiona por separado.</p>
-      <p>El CSS de un componente tiene que tener una logica interna, que debe apreciarse leyendo el código.</p>
-    </aside>
-  </section>
-
-  <section>
-    <h2>Enlaces relacionados:</h2>
-    <ul>
-      <li>
-        <a href="http://bradfrost.com/blog/post/atomic-web-design/">“Atomic Design”</a> - <i>Brad Frost</i>
-      </li>
-
-      <li>
-        <a href="http://blog.millermedeiros.com/solid-css/">“Solid Css”</a> - <i> Miller H. Borges Medeiros</i>
-      </li>
-
-      <li>
-        <a href="http://csswizardry.com/2012/04/the-single-responsibility-principle-applied-to-css/">“The single responsibility principle applied to CSS”</a> - <i>Harry Roberts</i>
-      </li>
-
-    </ul>
-  </section>
+    <li class="Social-item">
+      <a href="https://twitter.com/nahuelsotelo" class="Social-link Social-link--twitter">@nahuelsotelo</a>
+    </li>
+  </ul>
 </section>
-
-
-<!-- {#% include 05-specificity.html %} -->
-
-<section>
-  <section>
-    <h1>Selectores</h1>
-  </section>
-
-  <section>
-    <h3>Carcterísticas de un buen selector</h3>
-    <ul>
-      <li>Tiene baja especificidad</li>
-      <li>Es sólido (no depende del contexto)</li>
-      <li>Es autodocumentado (su función se entiende solo con leerlo)</li>
-    </ul>
-  </section>
-
-  <section>
-    <p>El gráfico de especificidad es una representación de cómo se distribuye la misma a lo largo de una hoja de estilo.</p>
-    <p>Es recomendable que la especificidad vaya <strong>aumentando gradualmente</strong>, empezando con estilos más genéricos (selectores de elemento) y acabando con casos más específicos.</p>
-  </section>
-
-  <section>
-    <h2>Gráfico de especificidad</h2>
-    <div>
-      <img src="./img/specificity-graph-02.png" alt="" style="height: 350px;">
-      <p style="text-align: center;"><cite><a href="http://csswizardry.com/2014/10/the-specificity-graph/">The Specificity Graph</a> - <em>Harry Roberts</em></cite></p>
-    </div>
-  </section>
-
-  <section>
-    <h2>Especificidad plana</h2>
-    <p>Intentar mantener los selectores lo más cortos posibles (evitar nesting) nos ayudará a que nuestros componentes no estén atados a un contexto determinado y sean <strong>independientes</strong> del HTML.</p>
-
-    <pre><code class="hljs css">
-  /* Cuidado! */
-  #main-header nav ul > li .nav-link:first-child { ... }  /* 0, 1, 2, 3 */
-
-  /* Mejor */
-  .MainNav-link--first { ... }  /* 0, 0, 1, 0 */
-    </code></pre>
-  </section>
-
-  <section>
-    <h2>Nomenclaturas</h2>
-    <blockquote>
-      "What we want is to be able to write code that is as transparent and self-documenting as possible. Transparency means that it is clear and obvious (to others) in its intent; self-documenting means that we don’t have to lose time to writing and reading lengthy, supplementary documentation."
-      <footer><cite>- Harry Roberts</cite></footer>
-    </blockquote>
-  </section>
-
-  <section>
-    <h2>Enlaces relacionados:</h2>
-    <ul>
-      <li>
-        <a href="https://vimeo.com/140641366">“CSS For Software Engineers For CSS Developers”</a> - <i>Harry Roberts</i>
-      </li>
-
-      <li>
-        <a href="http://csswizardry.com/2015/04/cyclomatic-complexity-logic-in-css/">“Cyclomatic Complexity: Logic in CSS”</a> - <i>Harry Roberts</i>
-      </li>
-  </section>
-</section>
-
-
-<section>
-  <section>
-    <h1>Sistemas de Nomenclatura</h1>
-  </section>
-
-
-  <section>
-    <h2 style="line-height: .75; margin-bottom: 3rem;">
-      BEM<br>
-      <span style="font-size: .7em;">(block / element / modifier)</span>
-    </h2>
-    <div>
-      <img src="./img/bem.jpg" alt="" style="height: 350px;">
-      <p style="text-align: center;"><cite><a href="https://en.bem.info/method/">BEM Methodology</a></cite></p>
-    </div>
-  </section>
-
-  <section>
-    <pre class="fz-m"><code class="hljs css">
-  .nombre-del-bloque { ... }
-
-  .nombre-del-bloque__elemento { ... }
-
-  .nombre-del-bloque--modificador { ... }
-    </code></pre>
-  </section>
-
-  <section>
-    <h2>BEM Nesting</h2>
-
-    <pre class="fz-s"><code class="hljs sass">
-    .nombre-del-bloque {
-      ...
-
-      &__elemento {
-        ...
-      }
-
-      &--modificador {
-        ...
-      }
-    }
-    </code></pre>
-
-    <pre><code class="hljs css">
-    .nombre-del-bloque { ... }
-    .nombre-del-bloque__elemento { ... }
-    .nombre-del-bloque--modificador { ... }
-    </code></pre>
-  </section>
-
-  <section>
-    <p>Refactorizando:</p>
-    <pre contenteditable><code class="hljs css">
-  .tab-group { ... } /* 0, 0, 1, 0 */
-
-  .tab-group > li { ... } /* 0, 0, 1, 1 */
-
-  .tab-group a { ... } /* 0, 0, 1, 1 */
-
-  .tab-group a.selected { ... } /* 0, 0, 2, 1 */
-    </code></pre>
-
-    <pre contenteditable class="fragment"><code class="hljs css">
-  .tab-group { ... } /* 0, 0, 1, 0 */
-
-  .tab-group__tab { ... } /* 0, 0, 1, 0 */
-
-  .tab-group__link { ... } /* 0, 0, 1, 0 */
-
-  .tab-group__link--selected { ... } /* 0, 0, 1, 0 */
-    </code></pre>
-  </section>
-
-  <section>
-    <h2>Otros sistemas nomenclaturas</h2>
-    <ul>
-      <li>
-        <a href="http://seesparkbox.com/foundry/naming_css_stuff_is_really_hard">“Naming CSS Stuff Is Really Hard”</a> - <i>Ethan Muller</i>
-      </li>
-
-      <li>
-        <a href="http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/">“More Transparent UI Code with Namespaces”</a> - <i>Harry Roberts</i>
-
-      </li>
-      <li>
-        <a href="https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md">SUIT</a>
-      </li>
-
-      <li>
-        <a href="https://smacss.com/">“SMACSS”</a> - <i>Jonathan Snook</i>
-      </li>
-    </ul>
-  </section>
-</section>
-
-
-<section>
-  <section>
-    <h1>Cómo continuar</h1>
-  </section>
-
-  <section>
-    <h2 class="h7">Aprender y adaptar:</h2>
-    <p class="fz-m">Es importante seguir leyendo y mirando los diferentes frameworks o soluciones que va creando la comunidad pero siempre adaptándolos a nuestras necesidades. <strong>No al copy-paste</strong>.</p>
-
-    <h2 class="h7">Practicar:</h2>
-    <p class="fz-m">Aplicar las buenas prácticas siempre que se pueda, la mayoría son universales y no dependen del tamaño o naturaleza del proyecto.</p>
-
-    <h2 class="h7">Divide y vencerás:</h2>
-    <p class="fz-m">Intentar repartir nuestro código en pequeños trozos manejables. Evitar los archivos de 2000 líneas.</p>
-  </section>
-
-  <section>
-    <h2 class="h7">Documentar:</h2>
-    <p class="fz-m">Dejar nuestro código bien documentado nos ayudará a volver sobre nuestros proyectos pasado un tiempo sin perder la razón, además de ayudar a otros developers que trabajen con el mismo.</p>
-    <p class="fz-m">Documentar también nos ayuda a reflexionar sobre lo que hemos hecho y fijar conceptos.</p>
-
-    <h2 class="h7">Refactor constante:</h2>
-    <p class="fz-m">No tener miedo al refactor siempre y cuando se haga con las precauciones adecuadas. Si hemos seguido buenas prácticas refactorizar no debería ser muy costoso.</p>
-  </section>
-</section>
-
-<section>
-  <h1>¡Grácias!</h1>
-</section>
-
 
 
     </div>
